@@ -47,7 +47,7 @@ def news2_trend():
     factivity = pd.read_csv("C:/Users/Gourib/preint/wecare/package_data/carehome_activity.csv", sep="\t")
     factivity['reading_date'] = factivity["wmd.caseload_yr -8"].astype(str) + "/" + factivity["caseload_month"]
     factivity['reading_date'] = factivity['reading_date'].replace('\n','')
-    
+    factivity['reading_date']= pd.to_datetime(factivity['reading_date'])
     
     factivity = factivity.rename(columns={'NEWS2(0-4)': 'NEWS2_0-4', 'NEWS2(5-6)': 'NEWS2_5-6', 'NEWS2(7+)':'NEWS2_7_'})
     
