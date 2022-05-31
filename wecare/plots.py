@@ -68,4 +68,19 @@ def news2_trend():
     plt.xticks(ticks=f_rd_date)
     plt.legend()
     
+def get_overalls(): 
     
+    factivity = pd.read_csv("C:/Users/Gourib/preint/wecare/package_data/carehome_activity.csv", sep="\t")
+    factivity = factivity.rename(columns={'NEWS2(0-4)': 'NEWS2_0-4', 'NEWS2(5-6)': 'NEWS2_5-6', 'NEWS2(7+)':'NEWS2_7_'})    
+    
+    
+    BP_rec = factivity.loc[factivity.NEWS2_7_>0]['BP']
+    O2_rec = factivity.loc[factivity.NEWS2_7_>0]['O2']
+    pulse_rec = factivity.loc[factivity.NEWS2_7_>0]['Pulse']
+    temp_rec = factivity.loc[factivity.NEWS2_7_>0]['Temp']
+        
+    labels=['BP','Oxygen','Pulse','Temp']
+    plt.boxplot([BP_rec,O2_rec,pulse_rec,temp_rec],labels=labels)
+    plt.ylabel('Overall')
+    plt.title('BP/O2/Pulse/Temp')
+        
